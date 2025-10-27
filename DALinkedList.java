@@ -1,4 +1,4 @@
-package linkedListClass;
+package pantry;
 
 public class DALinkedList<e> implements LinkedListInt<e> {
 	
@@ -78,7 +78,7 @@ public class DALinkedList<e> implements LinkedListInt<e> {
 		// This add method, inserts an element at the end of the list
 		// Instead of the implementing this entire method, we can make use
 		// of the other add(in index, e item) method 
-		// to add at thge end , is equivalent to index == size
+		// to add at the end , is equivalent to index == size
 		add(size, item);
 	}
 
@@ -128,8 +128,8 @@ public class DALinkedList<e> implements LinkedListInt<e> {
 		}
 		
 		return null;
-	}
-	@Override
+}
+	/*@Override
 	public e get(int index) {
 		if (index < 0|| index > this.size) {
 			System.out.println("Invalid index!");
@@ -137,35 +137,55 @@ public class DALinkedList<e> implements LinkedListInt<e> {
 		}
 		else 
 		return getNode(index).next.data;
-	}
+	*///}
 
 	@Override
-	public e set(int index, e newValue) {
+	//public e set(int index, e newValue) {
 		// TODO Auto-generated method stub
-		if (index < 0|| index > this.size) {
-			System.out.println("Invalid index!");
-			return null;
-		}
-		else  
-			return getNode(index).next.data = newValue ;
-	}
+	//	if (index < 0|| index > this.size) {
+	//		System.out.println("Invalid index!");
+	//		return null;
+	//	}
+	//	else  
+		//	return getNode(index).next.data = newValue ;
+	//}
 
-	@Override
 	public int size() {
 		return this.size;
 	}
 	public String toString() {
-		String s = "[";
+		String s = "[ - ";
 		Node<e> p = head;
 		if (p!=null) {
 			while (p.next !=null) {
 			//iterate over the node one by one
-			s = s+ p.next.data +"->";
+			s = s+ p.next.data+" - ";
 			p=p.next;
 			}
 		}
 		s+= "]";
 		return s;
+	}
+	// In get(int index)
+	@Override
+	public e get(int index) {
+	    if (index < 0 || index >= size) { // Corrected the index check
+	    	System.out.println("Invalid Index!");
+	    }
+	    Node<e> node = getNode(index + 1); 
+	    return node.data;
+	}
+
+	// In set(int index, e newValue)
+	@Override
+	public e set(int index, e newValue) {
+	    if (index < 0 || index >= size) { 
+	        throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+	    }
+	    Node<e> node = getNode(index + 1); 
+	    e oldValue = node.data;
+	    node.data = newValue;
+	    return oldValue;
 	}
 
 }

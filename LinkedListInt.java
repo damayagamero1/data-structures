@@ -1,4 +1,4 @@
-package linkedListClass;
+package pantry;
 
 public interface LinkedListInt <e>{
 	// Method to add an element at an index
